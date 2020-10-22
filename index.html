@@ -6,18 +6,19 @@
 
 <form>
 	<input type="text" id="web" style="width:350px;" name="webs">
-	<input type="button" value="Run" onclick="msg()">
+	<input id="runmsg" type="button" value="Run" onclick="msg()">
 </form>
 
 
 <p id="demo"></p>
 
 <script>
-	//input.addEventListener("keyup", function(event) {
-  	//	if (event.keyCode === 13) {
-	//		event.preventDefault();
-	//	}
-	//}
+	input.addEventListener("keyup", function(event) {
+  		if (event.keyCode === 13) {
+			event.preventDefault();
+			document.getElementById("myBtn").click();
+		}
+	}
 function msg() {
 	if (web.value.charAt(web.value.length-1) == "/"){ 
 		web.value = web.value.substr(0, web.value.length - 1);
