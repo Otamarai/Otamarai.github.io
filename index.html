@@ -5,7 +5,7 @@
 
 
 <form>
-	<input type="text" id="web" style="width:350px;" name="webs">
+	<input id="web" style="width:350px;">
 	<input id="runmsg" type="button" value="Run" onclick="msg()">
 </form>
 
@@ -13,6 +13,7 @@
 <p id="demo"></p>
 
 <script>
+	//name="webs"
 	var input = document.getElementById("web");
 	input.addEventListener("keyup", function(event) {
   		if (event.keyCode === 13) {
