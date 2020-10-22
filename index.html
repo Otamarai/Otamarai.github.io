@@ -4,16 +4,18 @@
 <h2>HTTP and HTTPs Quick URLs</h2>
 
 
-<form onsubmit="return msg()">
+<form class="urls">
 	<input type="text" id="web" style="width:350px;" name="webs">
-	<input type="submit" value="Run" onclick="msg()">
+	<input type="submit" value="Run">
 </form>
 
 
 <p id="demo"></p>
 
 <script>
-function msg() {
+	//onclick="msg()"
+	//function msg() {
+$('.urls').on('submit', function () {
 	if (web.value.charAt(web.value.length-1) == "/"){ 
 		web.value = web.value.substr(0, web.value.length - 1);
 	}
