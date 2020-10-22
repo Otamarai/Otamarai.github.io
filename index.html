@@ -13,7 +13,8 @@
 <p id="demo"></p>
 
 <script>
-	web.addEventListener("keyup", function(event) {
+	var input = document.getElementById("web");
+	input.addEventListener("keyup", function(event) {
   		if (event.keyCode === 13) {
 			event.preventDefault();
 			document.getElementById("runmsg").click();
