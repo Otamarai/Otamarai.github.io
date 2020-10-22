@@ -16,6 +16,7 @@
 	//onclick="msg()"
 	//function msg() {
 $('.urls').on('submit', function () {
+	event.preventDefault();
 	if (web.value.charAt(web.value.length-1) == "/"){ 
 		web.value = web.value.substr(0, web.value.length - 1);
 	}
