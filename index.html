@@ -4,7 +4,7 @@
 <h2>HTTP and HTTPs Quick URLs</h2>
 
 
-<form>
+<form onsubmit="msg()">
 	<input type="text" id="web" style="width:350px;" name="webs">
 	<input type="button" value="Run" onclick="msg()">
 </form>
@@ -33,6 +33,7 @@ function msg() {
     	display += websites[i] + "<br>";
     }
 	document.getElementById("demo").innerHTML = display;
+	return false;
 }
 
 
