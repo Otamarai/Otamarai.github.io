@@ -1,10 +1,12 @@
 <html>
 <body>
 
-<h2>HTTP and HTTPs Quick URLs</h2>
+<h2>Charm Duration Calculation</h2>
 
 
-	<input id="web" style="width:350px;">
+	<input id="chr" placeholder="CHR" style="width:350px;"><br />
+	<input id="dlvl" placeholder="Level Difference(Charmer-Target)" style="width:350px;"><br />
+	<input id="charm" placeholder="Charm+" style="width:350px;"><br />
 	<input id="runmsg" type="button" value="Run" onclick="msg()">
 
 
@@ -12,7 +14,7 @@
 
 <script>
 	//name="webs"
-	var input = document.getElementById("web");
+	var input = document.getElementById("chr");
 	input.addEventListener("keyup", function(event) {
   		if (event.keyCode === 13) {
 			event.preventDefault();
@@ -20,25 +22,33 @@
 		}
 	});
 function msg() {
-	if (web.value.charAt(web.value.length-1) == "/"){ 
-		web.value = web.value.substr(0, web.value.length - 1);
+
+	var baseCharmDuration = Math.floor(1.25*chr.value+150);
+	var dLvl = dlvl.value;
+	
+	var dLvlCharmMult = 1/24;
+	if (dLvl >= -6 && dLvl < 9) {
+		dLvlCharmMult = 0.9997336 + (0.3652882*dLvl) + (0.02097742*dLvl**2) - (0.004106429*dLvl**3) + (0.000007231037*dLvl**4) + (0.00005102634*dLvl**5);
 	}
-	var websites = [web.value, web.value, web.value, web.value, web.value, web.value, web.value, web.value];
-    websites[1] = websites[1].replace('www.', '')
-    websites[2] = websites[2].replace('https', 'http')
-    websites[3] = websites[2].replace('www.', '')
+	else if (dLvl >= 9) {
+		dLvlCharmMult = 6;
+	}
+	var charmDuration = baseCharmDuration * dLvlCharmMult;
+	
+	var charmTimeMod = 0;
+	if (charm.value != false) {
+		charmTimeMod = charm.value;
+	}
+	var extraDurationFromMod = charmDuration * (charmTimeMod*0.5/10);
+	charmDuration = charmDuration + extraDurationFromMod;
     
-    websites[4] = websites[0] + "/nothere"
-    websites[5] = websites[1] + "/nothere"
-    websites[6] = websites[2] + "/nothere"
-    websites[7] = websites[3] + "/nothere"
     
-    var i;
-    var display = "";
-    for (i = 0; i < websites.length; i++) {
-    	display += websites[i] + "<br>";
-    }
-	document.getElementById("demo").innerHTML = display;
+	var display = Math.floor(charmDuration);
+    var minutes = Math.floor(display / 60)
+	var seconds = display % 60
+	
+	
+	document.getElementById("demo").innerHTML = display + ' Total Seconds<br>' + minutes + ' minutes and ' + seconds + ' seconds';
 }
 
 
